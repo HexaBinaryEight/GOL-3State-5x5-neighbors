@@ -1,0 +1,8 @@
+arrow keys to look around.
+S saves a snapshot.
+F toggles frame rate (from normal, fast, unlimited, 1FPS, 2FPS, etc... in that order)
+Z zooms in so close
+
+The rule table on the right side is clickable. A cell's next state is determined like so: x axis==what state the cell is now (left=negative, right=positive), y axis==the sum of the neighboring 5x5 cells, where down is positive.
+
+Changing the rules may appear to lead to the system freezing, but it's actually... kinda frozen! Specifically, we don't update the grid by iterating over all the cells, but instead by iterating over a list of cell IDs. Initially, all cells are listed, and when cells are processed, they are taken off the list. After that, only cells whose neighbors change states are readded to the list. If you change the rules to something where the entire universe stablizes, then the system is locked in; it will think nothing needs processing since nothing is on the list, and nothing can be added to the list since nothing is ever going to change. Oh well! I'll fix it up next time.
